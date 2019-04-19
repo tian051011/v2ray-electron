@@ -51,6 +51,17 @@
         }
       ]
     },
+    "linux": {
+      "icon": "assets/icon.ico",
+      "files": [
+        "src/**",
+        "assets/*",
+        {
+          "from": "assets/v2ray/v2ray-linux",
+          "to": "assets/v2ray/v2ray"
+        }
+      ]
+    },
     "win": {
       "icon": "assets/icon.ico",
       "files": [

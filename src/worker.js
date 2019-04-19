@@ -8,14 +8,14 @@ const log = require('electron-log');
 class Worker {
   constructor(logger) {
     this.status = 'stopped';
-    let executableName = os.platform() === "darwin" ? 'v2ray' : 'v2ray.exe'
+    let executableName = (os.platform() === "darwin" || os.platform() === "linux") ? 'v2ray' : 'v2ray.exe'
     if (global.ROOT.indexOf('app.asar') > 0) {
       this.executableDirectory = path.join(global.ROOT, 'assets', 'v2ray', 'v2ray').replace('app.asar', 'app.asar.unpacked')
     } else {
-      this.executableDirectory = path.join(global.ROOT, 'assets', 'v2ray', `v2ray-${os.platform() === "darwin" ? 'macos' : 'win'}`).replace('app.asar', 'app.asar.unpacked')
+      this.executableDirectory = path.join(global.ROOT, 'assets', 'v2ray', `v2ray-${os.platform() === "darwin" ? 'macos' : (os.platform() === "linux" ? 'linux' : 'win')}`).replace('app.asar', 'app.asar.unpacked')
     }
     this.executablePath = path.join(this.executableDirectory, executableName)
-    if (os.platform() === 'darwin') {
+    if (os.platform() === 'darwin' || os.platform() === "linux") {
       execSync(`chmod +x "${this.executablePath}"`)
       execSync(`chmod +x "${path.join(this.executableDirectory, 'v2ctl')}"`)
     }

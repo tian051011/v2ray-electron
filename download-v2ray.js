@@ -9,7 +9,7 @@ const unzipper = require('unzipper');
 switchIntoWorkSpace();
 
 if (runningOnTravis()) {
-  ["win32", "darwin"].forEach(platform => runTaskOnPlatform(platform));
+  ["win32", "darwin", "linux"].forEach(platform => runTaskOnPlatform(platform));
 }
 else {
   runTaskOnPlatform(os.platform());
@@ -39,6 +39,14 @@ function setPlatform(platform) {
     let filename = `v2ray-${version}-macos.zip`;
     let extract_dir = `v2ray-${version}-macos`;
     let target_dir = 'v2ray-macos';
+    let executable_name = "v2ray";
+    return {url, filename, extract_dir, target_dir, executable_name};
+  }
+  if (platform === "linux") {
+    let url = `https://github.com/v2ray/v2ray-core/releases/download/${version}/v2ray-linux-64.zip`;
+    let filename = `v2ray-${version}-linux.zip`;
+    let extract_dir = `v2ray-${version}-linux`;
+    let target_dir = 'v2ray-linux';
     let executable_name = "v2ray";
     return {url, filename, extract_dir, target_dir, executable_name};
   }
