@@ -15,7 +15,7 @@ class Worker {
       this.executableDirectory = path.join(global.ROOT, 'assets', 'v2ray', `v2ray-${os.platform() === "darwin" ? 'macos' : (os.platform() === "linux" ? 'linux' : 'win')}`).replace('app.asar', 'app.asar.unpacked')
     }
     this.executablePath = path.join(this.executableDirectory, executableName)
-    if (os.platform() === 'darwin' || os.platform() === "linux") {
+    if (os.platform() === 'darwin') {
       execSync(`chmod +x "${this.executablePath}"`)
       execSync(`chmod +x "${path.join(this.executableDirectory, 'v2ctl')}"`)
     }
