@@ -52,7 +52,7 @@
       ]
     },
     "linux": {
-      "icon": "assets/icon.ico",
+      "icon": "assets/icon-linux.png",
       "files": [
         "src/**",
         "assets/*",
